@@ -20,10 +20,35 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "package": "cl.clagria.flota",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDpJ18HhslupA_BcCaeZW5vQiFsVIf1leU"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "La app necesita acceder a tus fotos para subir evidencia.",
+          "cameraPermission": "La app necesita acceder a la cámara para tomar fotos del odómetro."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permitir a Flota Somyl rastrear la ruta durante el viaje."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1b3fd2aa-3ab6-4132-850a-ac26536ec212"
+      }
     }
   }
 }
