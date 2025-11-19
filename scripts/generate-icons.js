@@ -40,6 +40,20 @@ const sharp = require('sharp');
       .png({ compressionLevel: 9 })
       .toFile(path.join(assetsDir, 'splash-icon.png'));
 
+    // 4) Play Store icon (512x512)
+    const playStoreFg = await sharp(svgBuffer).resize(360, 360, { fit: 'contain' }).png().toBuffer();
+    await sharp({ create: { width: 512, height: 512, channels: 4, background: bgColor } })
+      .composite([{ input: playStoreFg, gravity: 'center' }])
+      .png({ compressionLevel: 9 })
+      .toFile(path.join(assetsDir, 'icon-playstore-512.png'));
+
+    // 5) iOS icon (180x180) for home / App Store thumbnails
+    const iosFg = await sharp(svgBuffer).resize(120, 120, { fit: 'contain' }).png().toBuffer();
+    await sharp({ create: { width: 180, height: 180, channels: 4, background: bgColor } })
+      .composite([{ input: iosFg, gravity: 'center' }])
+      .png({ compressionLevel: 9 })
+      .toFile(path.join(assetsDir, 'icon-ios-180.png'));
+
     console.log('Generated assets: assets/adaptive-icon.png, assets/icon.png, assets/splash-icon.png');
   } catch (e) {
     console.error(e);
